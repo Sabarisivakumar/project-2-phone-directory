@@ -1,0 +1,85 @@
+
+<div class="content-body">
+  <div class="header">
+    <img src="../assets/img/img1.png" class="img-data">
+    Phone Directory
+  </div>
+   <div class="body">
+    <form [formGroup]="userForm" class="form-wrapper">
+      <div class="form-group">
+        <input type="text" class="text-field" formControlName="contactname" placeholder="Contact Name">
+        <div *ngIf="isSubmitted && userFormControls.contactname.errors" class="text-danger">
+          <div *ngIf="userFormControls.contactname.errors.required && !userFormControls.contactname.errors.pattern">
+            Contactname is required
+          </div>
+          <div *ngIf="userFormControls.contactname.errors.maxlength">
+             Contactname shouldn't be more than 20 characters
+          </div>
+
+          <div *ngIf="userFormControls.contactname.errors.pattern">
+            Only Alaphets should be entered
+          </div>
+
+        </div>
+</div>
+<div class="form-group">
+        <input type="text" class="text-field" formControlName="mobilenumber" placeholder="Mobile Number">
+        <div *ngIf="isSubmitted && userFormControls.mobilenumber.errors" class="text-danger">
+          <div *ngIf="userFormControls.mobilenumber.errors.required && !userFormControls.mobilenumber.errors.pattern">
+            Mobilenumber is required
+          </div>
+          <div *ngIf="userFormControls.mobilenumber.errors.maxlength">
+             Mobilenumber shouldn't be more than 10 characters
+          </div>
+
+          <div *ngIf="userFormControls.mobilenumber.errors.pattern">
+            Only numbers should be entered
+          </div>
+
+        </div>
+        </div>
+        <div class="form-group">
+        <input type="text" class="text-field" formControlName="email" placeholder="Email">
+        <div *ngIf="isSubmitted && userFormControls.email.errors" class="text-danger">
+          <div *ngIf="userFormControls.email.errors.required && !userFormControls.email.errors.pattern">
+            Email is required
+          </div>
+          <div *ngIf="userFormControls.email.errors.maxlength">
+             Email shouldn't be more than 10 characters
+          </div>
+
+          <div *ngIf="!userFormControls.email.errors.maxlength && userFormControls.email.errors.pattern">
+            Please enter the valid email
+          </div>
+</div>
+        </div>
+        <button type="button" class="button" (click)="Addcontact()"> Add Contact</button>
+
+
+
+    </form>
+    </div>
+    <div class="table-body">
+      <div class="table-wrapper">
+        <table class="table">
+          <caption class="summary">Contacts Summary</caption>
+          <thead>
+            <tr>
+              <th>Contact Name</th>
+              <th>Mobile Number</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listData">
+              <td> <span>{{item.contactname}}</span></td>
+              <td> <span>{{item.mobilenumber}}</span></td>
+              <td> <span>{{item.email}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+  </div>
+</div>
+<router-outlet></router-outlet>
